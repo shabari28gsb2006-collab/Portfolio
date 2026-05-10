@@ -1,6 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+      .nav-logo {
+        font-size: 1.4rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        color: #ffd700;
+        text-shadow:
+          0 0 12px #ffd70088,
+          0 2px 8px #fff8;
+      }
+      .cursor-dot {
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: radial-gradient(circle, #ffd700 60%, #fff0 100%);
+        opacity: 0.7;
+        transform: translate(-50%, -50%);
+        transition: background 0.2s;
+        will-change: transform;
+      }
+    </style>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gokul Shabari Balaji R S | Aspiring Web Developer</title>
@@ -15,6 +39,27 @@
   </script>
 </head>
 <body>
+  <script>
+    // Simple trailing cursor effect
+    document.addEventListener('DOMContentLoaded', function() {
+      const cursor = document.createElement('div');
+      cursor.className = 'cursor-dot';
+      document.body.appendChild(cursor);
+      let mouseX = 0, mouseY = 0, dotX = 0, dotY = 0;
+      document.addEventListener('mousemove', function(e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+      function animate() {
+        dotX += (mouseX - dotX) * 0.18;
+        dotY += (mouseY - dotY) * 0.18;
+        cursor.style.left = dotX + 'px';
+        cursor.style.top = dotY + 'px';
+        requestAnimationFrame(animate);
+      }
+      animate();
+    });
+  </script>
 
   <!-- ===== LOADER ===== -->
   <div id="loader">
@@ -59,7 +104,9 @@
       </div>
       <div class="hero-image">
         <div class="profile-wrapper">
-          <img src="assets/profile.jpg">
+          <div class="profile-frame">
+            <img src="assets/profile.jpg" class="profile-img-circular" alt="Profile photo" />
+          </div>
         </div>
       </div>
     </div>

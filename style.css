@@ -1,3 +1,49 @@
+/* Circular profile with animated glowing frame */
+
+.profile-frame {
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: conic-gradient(
+    #ffd700 0%,
+    #fff 25%,
+    #ffb300 50%,
+    #ffd700 75%,
+    #fff 100%
+  );
+  box-shadow: 0 0 32px 10px #ffd70055, 0 0 0 6px #fff2;
+  padding: 24px;
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 32px 10px #ffd70055, 0 0 0 6px #fff2;
+    filter: brightness(1);
+  }
+  100% {
+    box-shadow: 0 0 56px 18px #ffd700aa, 0 0 0 12px #fff4;
+    filter: brightness(1.12);
+  }
+}
+
+@keyframes spinFrame {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.profile-img-circular {
+  width: 472px;
+  height: 472px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #fff;
+  background: #181824;
+  box-shadow: none;
+  display: block;
+}
 /* =============================================================
    style.css — Portfolio Website for Gokul
    Sections:
