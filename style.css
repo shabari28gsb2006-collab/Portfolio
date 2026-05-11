@@ -2,22 +2,38 @@
 /* Circular profile with animated glowing frame */
 
 .profile-frame {
-  width: 520px;
-  height: 520px;
+  width:clamp(220px, 35vw, 420px);
+  height: clamp(220px, 35vw, 420px);
+  aspect-ratio: 1/1;
+  flex-shrink:0;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   background: conic-gradient(
     #ffd700 0%,
     #fff 25%,
     #ffb300 50%,
     #ffd700 75%,
     #fff 100%
-  );
+  );  
+
   box-shadow: 0 0 32px 10px #ffd70055, 0 0 0 6px #fff2;
-  padding: 24px;
+  padding: 10px;
 }
+
+  @media (max-width:n768px){
+    .profile-frame{
+      width: 100%;
+      height: 100%;
+      padding: 50%;
+      object-fit: cover;
+    }
+  }
+
+
+
 
 @keyframes pulseGlow {
   0% {
@@ -35,6 +51,20 @@
   100% { transform: rotate(360deg); }
 }
 
+@keyframes pageEntry {
+  0% {
+    opacity: 0;
+    transform: scale(1.03);
+    filter: blur(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
 .profile-img-circular {
   width: 100%;
   max-width: 472px;
@@ -44,7 +74,7 @@
   border: 4px solid #fff;
   background: #181824;
   box-shadow: none;
-  display: block;
+  display: flex;
 }
 /* =============================================================
    style.css — Portfolio Website for Gokul
@@ -129,6 +159,7 @@ body {
   color: var(--color-text);
   line-height: 1.7;
   font-size: 1rem;
+  animation: pageEntry 1s ease;
 }
 
 /* Remove default list styling */
@@ -227,6 +258,117 @@ h1, h2, h3, h4, h5, h6 {
    ============================================================= */
 
 /* Full-viewport fixed overlay shown while the page loads */
+
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  animation: loaderFadeOut 1s ease forwards;
+  animation-delay: 2.8s;
+}
+
+/* Logo / Name animation */
+.loader-text {
+  font-size: clamp(2rem, 7vw, 5rem);
+  font-weight: 900;
+  letter-spacing: 4px;
+
+  background: linear-gradient(
+    90deg,
+    #ffffff,
+    #ffd700,
+    #ffffff,
+    #ffd700,
+    #ffffff
+  );
+
+  background-size: 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation:
+    textGlow 2s ease-in-out infinite,
+    gradientMove 4s linear infinite,
+    zoomIn 1.2s ease;
+}
+
+/* Small subtitle */
+.loader-sub {
+  margin-top: 12px;
+  color: #aaa;
+  font-size: 1rem;
+  letter-spacing: 3px;
+
+  opacity: 0;
+  animation: fadeUp 1s ease forwards;
+  animation-delay: 1s;
+}
+
+/* Background fade */
+@keyframes loaderFadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Zoom effect */
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Gold shine moving */
+@keyframes gradientMove {
+  0% {
+    background-position: 0%;
+  }
+
+  100% {
+    background-position: 300%;
+  }
+}
+
+/* Glow pulse */
+@keyframes textGlow {
+  0% {
+    filter: drop-shadow(0 0 8px #ffd70066);
+  }
+
+  100% {
+    filter: drop-shadow(0 0 22px #ffd700);
+  }
+}
+
+/* Subtitle animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 #loader {
   position: fixed;
   top: 0;
@@ -311,12 +453,28 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1.4rem;
   font-weight: 700;
   letter-spacing: 0.03em;
-  background: linear-gradient(90deg, #6c63ff, #00d4ff, #f5a623, #ff6b9d, #a09af8, #6c63ff);
+  background: linear-gradient(90deg, #fcfcfd, #00d4ff);
   background-size: 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: nameColorShift 5s linear infinite;
+}
+
+.nav-logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+/* Port = white */
+.nav-logo .white {
+  color: #ffffff;
+}
+
+/* folio = blue */
+.nav-logo .blue {
+  color: #00d4ff;
 }
 
 @keyframes nameColorShift {
