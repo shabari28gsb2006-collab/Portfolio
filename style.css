@@ -461,21 +461,6 @@ h1, h2, h3, h4, h5, h6 {
   animation: nameColorShift 5s linear infinite;
 }
 
-.nav-logo {
-  font-size: 1.4rem;
-  font-weight: 800;
-  letter-spacing: 0.03em;
-}
-
-/* Port = white */
-.nav-logo .white {
-  color: #ffffff;
-}
-
-/* folio = blue */
-.nav-logo .blue {
-  color: #00d4ff;
-}
 
 @keyframes nameColorShift {
   0%   { background-position: 0%; }
