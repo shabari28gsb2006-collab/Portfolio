@@ -1,3 +1,4 @@
+
 /* Circular profile with animated glowing frame */
 
 .profile-frame {
@@ -35,8 +36,9 @@
 }
 
 .profile-img-circular {
-  width: 472px;
-  height: 472px;
+  width: 100%;
+  max-width: 472px;
+  height: auto;
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid #fff;
